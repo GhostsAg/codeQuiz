@@ -24,7 +24,7 @@ header {
 }
 
 #landing {
-    display: none;
+    display: block;
 }
 
 #content {
@@ -32,7 +32,7 @@ header {
 }
 
 #setHighScores {
-    display: show;
+    display: none;
 }
 
 #initials {
