@@ -46,26 +46,27 @@ var $scores = document.getElementById("scores");
 var timerVar;
 var initialsVar;
 var startTimer;
-var iNum = 0;
+var iNum;
 
-function funcTimer(timer) {
-    if (timer < 1) {
+function funcTimer() {
+    if (timerVar < 1) {
         clearInterval(startTimer);
         $content.style.display = "none";
         $setHighScores.style.display = "block";
     }
     else {
-        timer--;
-        $timer.innerHTML = `${timer}`;
+        timerVar--;
+        $timer.innerHTML = `${timerVar}`;
     }
 }
 
 function begin(event) {
     event.preventDefault();
-    let timerVar = 60;
+    iNum = 0;
+    timerVar = 60;
     $landing.style.display = "none";
     $content.style.display = "block";
-    startTimer = setInterval(funcTimer, 1000, timerVar);
+    startTimer = setInterval(funcTimer, 1000);
     $question.textContent = Quiz[0].question;
     $answers[0].textContent = Quiz[0].answerRight;
     for (let i=1; i<$answers.length; i++) {
