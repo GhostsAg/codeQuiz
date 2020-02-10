@@ -22,6 +22,8 @@ var $timer = document.getElementById("timer");
 var $viewHighBtn = document.getElementById("viewHighBtn");
 var $beginBtn = document.getElementById("beginBtn");
 var $submitBtn = document.getElementById("submitBtn");
+var $backBtn = document.getElementById("backBtn");
+var $clearBtn = document.getElementById("clearBtn");
 
 // Landing Page
 var $landing = document.getElementById("landing");
@@ -41,25 +43,26 @@ var $highScores = document.getElementById("highScores");
 var $scores = document.getElementById("scores");
 
 //  Global variables
-let timerVar = 60;
+var timerVar;
 var initialsVar;
 var startTimer;
 var iNum = 0;
 
 function funcTimer(timer) {
-    switch(timer) {
-        case timer < 1:
-            clearInterval(startTimer);
-            $content.style.display = "none";
-            $setHighScores.style.display = "block";
-        default:
-            timer--;
-            $timer.textContent = `${timer}`; 
+    if (timer < 1) {
+        clearInterval(startTimer);
+        $content.style.display = "none";
+        $setHighScores.style.display = "block";
+    }
+    else {
+        timer--;
+        $timer.innerHTML = `${timer}`;
     }
 }
 
 function begin(event) {
     event.preventDefault();
+    let timerVar = 60;
     $landing.style.display = "none";
     $content.style.display = "block";
     startTimer = setInterval(funcTimer, 1000, timerVar);
@@ -97,7 +100,7 @@ function check(event) {
     else {
         iNum++;
         $feedBack.style.display = "block";
-        $feedBack.innerHTML = "Right!";
+        $feedBack.innerHTML = "Correct!";
         setTimeout(hideFeedback, 500);
         $question.textContent = Quiz[iNum].question;
         $answers[0].textContent = Quiz[iNum].answerRight;
@@ -118,6 +121,17 @@ function initials() {
     localStorage.setItem("score", scoreVar);
 }
 
+function goBack() {
+    $highScores.style.display = "none";
+    $landing.style.display = "block";
+}
+
+function clearHigh() {
+    while ($scores.firstChild) {
+        $scores.removeChild($scores.firstChild);
+    }
+}
+
 $beginBtn.addEventListener("click", begin, event);
 $viewHighBtn.addEventListener("click", viewHigh);
 
@@ -127,6 +141,9 @@ for (let i=0; i<$answers.length; i++) {
 }
 
 $submitBtn.addEventListener("click", initials);
+$backBtn.addEventListener("click", goBack);
+$clearBtn.addEventListener("click", clearHigh);
+
 
 
 
