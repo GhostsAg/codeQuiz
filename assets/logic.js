@@ -47,6 +47,7 @@ var timerVar;
 var initialsVar;
 var startTimer;
 var iNum;
+var randyNum;
 
 function funcTimer() {
     if (timerVar < 1) {
@@ -63,16 +64,21 @@ function funcTimer() {
 function begin(event) {
     event.preventDefault();
     iNum = 0;
+    randyNum = Math.floor(Math.random() * 4);
     timerVar = 60;
     $landing.style.display = "none";
     $content.style.display = "block";
     startTimer = setInterval(funcTimer, 1000);
-    $question.textContent = Quiz[0].question;
-    $answers[0].textContent = Quiz[0].answerRight;
-    for (let i=1; i<$answers.length; i++) {
-        $answers[i].textContent = Quiz[0].answerWrong[i-1]; 
+    $question.textContent = Quiz[iNum].question;
+    $answers[randyNum].textContent = Quiz[iNum].answerRight;
+    let j = 0;
+    for (let i = 0; i < $answers.length; i++) {
+        if (i!==randyNum) {
+            $answers[i].textContent = Quiz[0].answerWrong[j];
+            j++;
+        }
     }
-}
+}   
 
 function viewHigh() {
     $landing.style.display = "none";
@@ -100,13 +106,18 @@ function check(event) {
     }
     else {
         iNum++;
+        randyNum = Math.floor(Math.random() * 4);
         $feedBack.style.display = "block";
         $feedBack.innerHTML = "Correct!";
         setTimeout(hideFeedback, 500);
         $question.textContent = Quiz[iNum].question;
-        $answers[0].textContent = Quiz[iNum].answerRight;
-        for (let i=1; i<$answers.length; i++) {
-            $answers[i].textContent = Quiz[iNum].answerWrong[i-1]; 
+        $answers[randyNum].textContent = Quiz[iNum].answerRight;
+        let j = 0;
+        for (let i = 0; i < $answers.length; i++) {
+            if (i!==randyNum) {
+                $answers[i].textContent = Quiz[iNum].answerWrong[j];
+                j++;
+            }
         }
     }
 }
