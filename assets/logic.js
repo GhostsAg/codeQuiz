@@ -9,7 +9,7 @@ function Quiz(question, answerRight, answerWrong) {
 var first = new Quiz("How do we set a new unchanging variable in javascript?", "const", ["var", "set", "let"]);
 var second = new Quiz("How do we access the target property of an event listener?", "event.target", ["listener.target", "property.target", "property(event)"]);
 var third = new Quiz("Who invented javascript?", "Brendan Eich", ["Mark Zuckerberg", "Guido van Rossum", "Elon Musk"]);
-var fourth = new Quiz("How long did it take Brendan Eich to invent javascript?", "10 days", ["10 weeks", "10 months", "10 years"]);
+var fourth = new Quiz("How long did it take Brendan Eich to invent javascript?", "10 days", ["10 weeks", "15 months", "10 years"]);
 var fifth = new Quiz("How is javascript code executed inside the web browser?", "using a JIT compiler called V8", ["using your IDE debugger", "using the g++ compiler", "using the web browser console"]);
 
 //  Array of all content with questions and answers
